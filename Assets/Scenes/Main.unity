@@ -307,11 +307,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9121175778285984936, guid: 80135a3a534e41b4ab86cd508dafa7ac,
-        type: 3}
-      propertyPath: m_Name
-      value: CanvasPrefab
-      objectReference: {fileID: 0}
     - target: {fileID: 2523177185671005934, guid: 80135a3a534e41b4ab86cd508dafa7ac,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -321,6 +316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7510246963819788897, guid: 80135a3a534e41b4ab86cd508dafa7ac,
+        type: 3}
+      propertyPath: m_Text
+      value: 30.0
       objectReference: {fileID: 0}
     - target: {fileID: 8333215827682623000, guid: 80135a3a534e41b4ab86cd508dafa7ac,
         type: 3}
@@ -437,11 +437,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9121175778285984939, guid: 80135a3a534e41b4ab86cd508dafa7ac,
+    - target: {fileID: 9121175778285984936, guid: 80135a3a534e41b4ab86cd508dafa7ac,
         type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
+      propertyPath: m_Name
+      value: CanvasPrefab
+      objectReference: {fileID: 0}
     - target: {fileID: 9121175778285984938, guid: 80135a3a534e41b4ab86cd508dafa7ac,
         type: 3}
       propertyPath: m_UiScaleMode
@@ -462,6 +462,11 @@ PrefabInstance:
       propertyPath: m_ScreenMatchMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9121175778285984939, guid: 80135a3a534e41b4ab86cd508dafa7ac,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80135a3a534e41b4ab86cd508dafa7ac, type: 3}
 --- !u!1 &851947836
@@ -805,15 +810,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5572427412889384088, guid: 5b47013157678674ea3184ac9a0b9aec,
-        type: 3}
-      propertyPath: m_Name
-      value: Enemies1
-      objectReference: {fileID: 0}
     - target: {fileID: 2799801623893217326, guid: 5b47013157678674ea3184ac9a0b9aec,
         type: 3}
       propertyPath: transparentSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572427412889384088, guid: 5b47013157678674ea3184ac9a0b9aec,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemies1
       objectReference: {fileID: 0}
     - target: {fileID: 5869566284115446254, guid: 5b47013157678674ea3184ac9a0b9aec,
         type: 3}
