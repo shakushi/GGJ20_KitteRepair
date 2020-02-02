@@ -20,15 +20,18 @@ public class ActionResult : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(point <= 0)
+        if (STARTController.start)
         {
-            point = 0;
+            if (point <= 0)
+            {
+                point = 0;
+            }
+
+            // this.successAction(); // テスト用
+            this.pointText.text = point.ToString();
+
+            //Debug.Log(point);
         }
-
-        // this.successAction(); // テスト用
-        this.pointText.text = point.ToString();
-
-        //Debug.Log(point);
     }
 
     // 治療成功した時に呼ばれる

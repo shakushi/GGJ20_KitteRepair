@@ -88,102 +88,105 @@ public class enemiesController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!TimerController.isClear)
+        if (STARTController.start)
         {
-           // Debug.Log(enemiesGenerator.EnemiesNum);
-            //最大速度より遅いとき
-            if (this.rigid2D.velocity.x >= maxWalkSpeed)
+            if (!TimerController.isClear)
             {
-                //速度を追加する
-                this.rigid2D.AddForce(transform.right * walkSpeed);
-            }
-
-            //プレイヤーに当たった時
-            if (playerCheckHit)
-            {
-                //スペースキーを押したとき
-                if (Input.GetKeyDown(KeyCode.Space))
+                // Debug.Log(enemiesGenerator.EnemiesNum);
+                //最大速度より遅いとき
+                if (this.rigid2D.velocity.x >= maxWalkSpeed)
                 {
-                    if (!Slash)
+                    //速度を追加する
+                    this.rigid2D.AddForce(transform.right * walkSpeed);
+                }
+
+                //プレイヤーに当たった時
+                if (playerCheckHit)
+                {
+                    //スペースキーを押したとき
+                    if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        if (Maxalpha)
+                        if (!Slash)
                         {
-                            if (!condition)
+                            if (Maxalpha)
                             {
+                                if (!condition)
+                                {
 
-                                if (time <= (EmergenceTime / 3))
-                                {
-                                    //いいねを表示してスコア３倍
-                                    Instantiate(goodhand);
-                                    if(NoMiss == 5)
+                                    if (time <= (EmergenceTime / 3))
                                     {
-                                        script.successAction(CriticalScore * NoMissScore);
+                                        //いいねを表示してスコア３倍
+                                        Instantiate(goodhand);
+                                        if (NoMiss == 5)
+                                        {
+                                            script.successAction(CriticalScore * NoMissScore);
+                                        }
+                                        else
+                                        {
+                                            script.successAction(CriticalScore);
+                                            NoMiss++;
+                                        }
                                     }
                                     else
                                     {
-                                        script.successAction(CriticalScore);
-                                        NoMiss++;
+                                        if (NoMiss == 5)
+                                        {
+                                            script.successAction(normalScore * NoMissScore);
+                                        }
+                                        else
+                                        {
+                                            script.successAction(NoMissScore);
+                                            NoMiss++;
+                                        }
                                     }
+                                    audioSource.PlayOneShot(sound);
+                                    this.animator.SetBool("Repair", true);
                                 }
-                                else
+                                else if (condition)
                                 {
-                                    if (NoMiss == 5)
-                                    {
-                                        script.successAction(normalScore * NoMissScore);
-                                    }
-                                    else
-                                    {
-                                        script.successAction(NoMissScore);
-                                        NoMiss++;
-                                    }
+                                    script.failAction();
+                                    audioSource.PlayOneShot(sound);
+                                    this.animator.SetBool("Dead", true);
+                                    transDelay += 60;
+                                    NoMiss = 0;
                                 }
-                                audioSource.PlayOneShot(sound);
-                                this.animator.SetBool("Repair", true);
                             }
-                            else if (condition)
-                            {
-                                script.failAction();
-                                audioSource.PlayOneShot(sound);
-                                this.animator.SetBool("Dead", true);
-                                transDelay += 60;
-                                NoMiss = 0;
-                            }
+                            Slash = true;
                         }
-                        Slash = true;
-                    }
 
-                    //透明化開始
+                        //透明化開始
+                        decapitate = true;
+                    }
+                }
+                //透明化を開始した時
+                if (decapitate)
+                {
+                    Maxalpha = false;
+                    //透明化処理
+                    this.spriteRenderer.material.color -= alpha / (transparentSpeed + transDelay);
+                }
+
+                //画像が透明になった時
+                if (this.spriteRenderer.material.color.a <= 0)
+                {
+                    //オブジェクトを破棄
+                    Destroy(this.gameObject);
+
+                    enemiesGenerator.EnemiesNum--;
+                    enemiesGenerator.time = 0;
+                }
+
+                if (time >= EmergenceTime)
+                {
+                    if (!condition)
+                    {
+                        NoMiss = 0;
+                    }
                     decapitate = true;
                 }
             }
-            //透明化を開始した時
-            if (decapitate)
-            {
-                Maxalpha = false;
-                //透明化処理
-                this.spriteRenderer.material.color -= alpha / (transparentSpeed + transDelay);
-            }
-
-            //画像が透明になった時
-            if (this.spriteRenderer.material.color.a <= 0)
-            {
-                //オブジェクトを破棄
-                Destroy(this.gameObject);
-
-                enemiesGenerator.EnemiesNum--;
-                enemiesGenerator.time = 0;
-            }
-
-            if (time >= EmergenceTime)
-            {
-                if (!condition)
-                {
-                    NoMiss = 0;
-                }
-                decapitate = true;
-            }
+            Debug.Log(NoMiss);
         }
-        Debug.Log(NoMiss);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

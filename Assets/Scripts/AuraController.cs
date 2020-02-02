@@ -18,17 +18,20 @@ public class AuraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        NoMissCount = enemiesController.NoMiss;
-
-        if (NoMissCount == 5)
+        if (STARTController.start)
         {
-            animator.SetBool("Aura", true);
-        }
-        else
-        {
-            animator.SetBool("Aura", false);
-        }
+            NoMissCount = enemiesController.NoMiss;
 
-        Debug.Log(NoMissCount);
+            if (NoMissCount == 5)
+            {
+                animator.SetBool("Aura", true);
+            }
+            else
+            {
+                animator.SetBool("Aura", false);
+            }
+
+            Debug.Log(NoMissCount);
+        }
     }
 }

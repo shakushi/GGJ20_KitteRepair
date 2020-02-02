@@ -23,22 +23,25 @@ public class goodhand : MonoBehaviour
 
     void Update()
     {
-        time -= Time.deltaTime;//時間更新(徐々に減らす)
-        float f = time / fadetime; //徐々に0に近づける
-        float a = 1 - time / fadetime;//徐々に1に近づける
-        if (a > 0.9f && active)
+        if (STARTController.start)
         {
-            //Debug.Log("destroy");
-            Destroy(this.gameObject, 0.2f);
-            active = false;
-        }
-        else if (active)
-        {
-            Vector2 trans = this.transform.position;
-            trans.y += f * 0.08f;
-            this.transform.position = trans;
+            time -= Time.deltaTime;//時間更新(徐々に減らす)
+            float f = time / fadetime; //徐々に0に近づける
+            float a = 1 - time / fadetime;//徐々に1に近づける
+            if (a > 0.9f && active)
+            {
+                //Debug.Log("destroy");
+                Destroy(this.gameObject, 0.2f);
+                active = false;
+            }
+            else if (active)
+            {
+                Vector2 trans = this.transform.position;
+                trans.y += f * 0.08f;
+                this.transform.position = trans;
 
-            this.spriteRenderer.material.color = alpha * a;
+                this.spriteRenderer.material.color = alpha * a;
+            }
         }
     }
 }

@@ -25,25 +25,28 @@ public class enemiesGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!TimerController.isClear)
+        if (STARTController.start)
+        {
+            if (!TimerController.isClear)
         {
             time++;
 
-            if (time % appearTime == 0)
-            {
-                if (EnemiesNum < 3)
+                if (time % appearTime == 0)
                 {
-                    if (Random.Range(1, 6) % 3 != 0)
+                    if (EnemiesNum < 3)
                     {
-                        GameObject go = Instantiate(enemies1) as GameObject;
-                        go.transform.position = new Vector3(19.68f, 0.0f, 0);
-                        disease = false;
-                    }
-                    else
-                    {
-                        GameObject go = Instantiate(enemies2) as GameObject;
-                        go.transform.position = new Vector3(19.68f, 0.0f, 0);
-                        disease = true;
+                        if (Random.Range(1, 6) % 3 != 0)
+                        {
+                            GameObject go = Instantiate(enemies1) as GameObject;
+                            go.transform.position = new Vector3(19.68f, 0.0f, 0);
+                            disease = false;
+                        }
+                        else
+                        {
+                            GameObject go = Instantiate(enemies2) as GameObject;
+                            go.transform.position = new Vector3(19.68f, 0.0f, 0);
+                            disease = true;
+                        }
                     }
                 }
             }

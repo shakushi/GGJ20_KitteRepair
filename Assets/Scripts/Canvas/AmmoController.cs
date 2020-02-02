@@ -15,15 +15,15 @@ public class AmmoController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var score = 0;
-        var values = PlayerPrefs.GetString("score_ranking");
-        if (values != "")
-        {
-            score = values.Split(',').Select(v => Int32.Parse(v)).Max();
-        }
-        this.ammoText = GetComponentInChildren<Text>();
-        this.ammoText.text = score.ToString();
-    }
+            var score = 0;
+            var values = PlayerPrefs.GetString("score_ranking");
+            if (values != "")
+            {
+                score = values.Split(',').Select(v => Int32.Parse(v)).Max();
+            }
+            this.ammoText = GetComponentInChildren<Text>();
+            this.ammoText.text = score.ToString();
+     }
 
     // Update is called once per frame
     void Update()

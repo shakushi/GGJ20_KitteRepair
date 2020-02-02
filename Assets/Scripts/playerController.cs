@@ -21,12 +21,15 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!TimerController.isClear)
+        if (STARTController.start)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!TimerController.isClear)
             {
-                this.animator.SetTrigger("Slash");
-                audioSource.PlayOneShot(sound);
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    this.animator.SetTrigger("Slash");
+                    audioSource.PlayOneShot(sound);
+                }
             }
         }
     }
